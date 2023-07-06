@@ -1,0 +1,30 @@
+针对img.gz文件     gzip -d /目录/文件名
+
+mkdir /mnt/自定义名字
+
+modprobe nbd
+
+qemu-nbd -c /dev/nbd0 -f raw /目录/文件名
+
+lsblk -f /dev/nbd0
+
+mount /dev/nbd0p2 /mnt/自定义名字
+
+cd /mnt/自定义名字 && ls
+
+tar -czvf /var/lib/vz/template/cache/自定义模板名字.rootfs.tar.gz *
+
+卸载
+
+cd ..
+
+umount /mnt/自定义名字
+qemu-nbd -d /dev/nbd0
+
+pct create 110 local:vztmpl/自定义模板名字.rootfs.tar.gz --rootfs local-lvm:2 --ostype unmanaged --hostname OpenWrt-LXC --arch amd64 --cores 1 --memory 1024 --swap 0 -net0 bridge=vmbr0,name=enp1s0
+
+
+设置openwrt系列网络位置  nano /etc/config/network  包括修改默认192.168.1.1以及port：eth0改为port：enp1s0
+
+
+参考：https://www.bilibili.com/video/BV1fo4y137Pk/
