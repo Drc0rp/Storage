@@ -24,7 +24,7 @@ qemu-nbd -d /dev/nbd0
 pct create 110 local:vztmpl/自定义模板名字.rootfs.tar.gz --rootfs local-lvm:2 --ostype unmanaged --hostname OpenWrt-LXC --arch amd64 --cores 1 --memory 1024 --swap 0 -net0 bridge=vmbr0,name=enp1s0
 
 
-设置openwrt系列网络位置  nano /etc/config/network  包括修改默认192.168.1.1以及port：eth0改为port：enp1s0
+设置openwrt系列网络位置  vi /etc/config/network  包括修改默认192.168.1.1以及port：eth0改为port：enp1s0
 
 
 参考：https://www.bilibili.com/video/BV1fo4y137Pk/
