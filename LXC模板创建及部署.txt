@@ -19,6 +19,7 @@ tar -czvf /var/lib/vz/template/cache/自定义模板名字.rootfs.tar.gz *
 cd ..
 
 umount /mnt/自定义名字
+rm -r ./自定义名字
 qemu-nbd -d /dev/nbd0
 
 pct create 110 local:vztmpl/自定义模板名字.rootfs.tar.gz --rootfs local-lvm:2 --ostype unmanaged --hostname OpenWrt-LXC --arch amd64 --cores 1 --memory 1024 --swap 0 -net0 bridge=vmbr0,name=enp1s0
